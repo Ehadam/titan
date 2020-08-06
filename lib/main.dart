@@ -47,8 +47,8 @@ class _AppState extends State<App> {
               title: Text('List'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.filter_list),
-              title: Text('Filter'),
+              icon: Icon(Icons.search),
+              title: Text('Search'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.add),
