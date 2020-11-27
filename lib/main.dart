@@ -1,32 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:titan/domains/add_record/add_record.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:titan/domains/records_list/records_list.dart';
 
 void main() {
   runApp(App());
 }
 
-class App extends StatefulWidget {
-  @override
-  _AppState createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  int selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    RecordsList(),
-    const Text(
-      'Index 2: School',
-    ),
-    AddRecord(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
-
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,25 +17,15 @@ class _AppState extends State<App> {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text('Written Relics')),
-        body: _widgetOptions.elementAt(selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: _onItemTapped,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              title: Text('List'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              title: Text('Search'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              title: Text('Add'),
-            ),
-          ],
-        ),
+        body: RecordsList(),
+        floatingActionButton:
+            SpeedDial(child: Icon(Icons.menu_open), children: [
+          SpeedDialChild(
+            child: Icon(Icons.add),
+          ),
+          SpeedDialChild(child: Icon(Icons.filter_alt)),
+          SpeedDialChild(child: Icon(Icons.publish))
+        ]),
       ),
     );
   }
